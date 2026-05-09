@@ -1,26 +1,181 @@
+/* Tailwind v4 */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =========================
+   BASE LAYER
+========================= */
+
+/* =========================
+   BACKGROUND SYSTEM
+========================= */
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.main::before {
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
+  position: absolute;
+  content: "";
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.main::after {
+  content: "";
+  background-image: url("/assets/images/grid.svg");
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  opacity: 0.4;
+  filter: invert(1);
+}
+
+.gradient {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  max-width: 640px;
+  height: fit-content;
+  z-index: 3;
+  opacity: 0.15;
+  filter: blur(100px) saturate(150%);
+  background-image:
+    radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 1), transparent 50%),
+    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1), transparent 50%),
+    radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1), transparent 50%),
+    radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1), transparent 50%),
+    radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1), transparent 50%),
+    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1), transparent 50%),
+    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1), transparent 50%);
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding: 0;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =========================
+   APP LAYOUT
+========================= */
+.app {
+  @apply relative z-10 flex flex-col items-center justify-center max-w-7xl mx-auto sm:px-16 px-6;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.black_btn {
+  @apply inline-flex items-center justify-center rounded-full border border-black bg-black px-5 py-1.5 text-sm text-white transition hover:bg-white hover:text-black;
+}
+
+.outline_btn {
+  @apply inline-flex items-center justify-center rounded-full border border-black bg-transparent px-5 py-1.5 text-sm text-black transition hover:bg-black hover:text-white;
+}
+
+/* =========================
+   TEXT STYLES
+========================= */
+.head_text {
+  @apply mt-5 text-5xl font-extrabold leading-tight text-black sm:text-6xl;
+}
+
+.orange_gradient {
+  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+}
+
+.green_gradient {
+  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+}
+
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+
+.desc {
+  @apply mt-5 max-w-2xl text-lg text-gray-600 sm:text-xl;
+}
+
+/* =========================
+   FORMS
+========================= */
+.search_input {
+  @apply block w-full rounded-md border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium shadow-lg focus:border-black focus:outline-none;
+}
+
+.form_textarea {
+  @apply mt-2 h-[200px] w-full rounded-lg p-3 text-sm text-gray-500 outline-none;
+}
+
+.form_input {
+  @apply mt-2 w-full rounded-lg p-3 text-sm text-gray-500 outline-none;
+}
+
+/* =========================
+   UI COMPONENTS
+========================= */
+.copy_btn {
+  @apply flex h-7 w-7 items-center justify-center rounded-full bg-white/10 shadow-inner backdrop-blur cursor-pointer;
+}
+
+.glassmorphism {
+  @apply rounded-xl border border-gray-200 bg-white/20 p-5 shadow-inner backdrop-blur;
+}
+
+.prompt_card {
+  @apply h-fit w-full flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 p-6 pb-4 backdrop-blur md:w-[360px];
+}
+
+.prompt_layout {
+  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+}
+
+/* =========================
+   FEED
+========================= */
+.feed {
+  @apply mx-auto mt-16 flex w-full max-w-xl flex-col items-center justify-center gap-2;
+}
+
+/* =========================
+   NAV
+========================= */
+.logo_text {
+  @apply text-lg font-semibold tracking-wide text-black max-sm:hidden;
+}
+
+.dropdown {
+  @apply absolute right-0 top-full mt-3 flex w-full min-w-[210px] flex-col items-end gap-2 rounded-lg bg-white p-5;
+}
+
+.dropdown_link {
+  @apply text-sm font-medium text-gray-700 hover:text-gray-500;
+}
+
+/* =========================
+   HELPERS
+========================= */
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-start {
+  @apply flex items-start justify-start;
+}
+
+.flex-end {
+  @apply flex items-center justify-end;
+}
+
+.flex-between {
+  @apply flex items-center justify-between;
 }
