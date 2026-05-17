@@ -9,7 +9,11 @@ type ProviderProps = {
 };
 
 const Provider = ({ children, session }: ProviderProps) => {
-  return <SessionProvider session={session}>{children}</SessionProvider>;
+  // NextAuth treats any defined `session` (including `null`) as the initial value and
+  // skips the client getSession() fetch. Use `undefined` so the client loads the session.
+  return (
+    <SessionProvider session={session ?? undefined}>{children}</SessionProvider>
+  );
 };
 
 export default Provider;

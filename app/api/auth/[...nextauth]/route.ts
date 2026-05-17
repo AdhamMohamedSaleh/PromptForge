@@ -44,7 +44,8 @@ const authOptions: NextAuthOptions = {
         const userExists = await User.findOne({ email });
 
         if (!userExists) {
-          const username = profile?.name?.replaceAll(" ", "").toLowerCase() ?? email;
+          const username =
+            profile?.name?.replaceAll(" ", "").toLowerCase() ?? email;
           const image = (profile as { picture?: string } | undefined)?.picture;
 
           await User.create({

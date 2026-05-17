@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
       <body>
-        <Provider session={null}>
+        <Provider>
           <div className="main">
             <div className="gradient" />
           </div>

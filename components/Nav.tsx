@@ -11,11 +11,27 @@ type ProvidersType = Record<
   ClientSafeProvider
 > | null;
 
+const NavAuthSkeleton = () => (
+  <div className="flex items-center gap-3 md:gap-5" aria-hidden="true">
+    <div className="hidden sm:block h-9 w-28 rounded-full bg-black/10 animate-pulse" />
+    <div className="hidden sm:block h-9 w-24 rounded-full bg-black/10 animate-pulse" />
+    <div className="h-[37px] w-[37px] rounded-full bg-black/10 animate-pulse shrink-0" />
+  </div>
+);
+
 const Nav = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const [providers, setProviders] = useState<ProvidersType>(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+
+  const isAuthed = status === "authenticated" && Boolean(session?.user);
+  const showAuthSkeleton =
+    status === "loading" ||
+    (status === "unauthenticated" && providers === null);
+  const providerList = providers ? Object.values(providers) : [];
+  const showProviderSignIn =
+    status === "unauthenticated" && providerList.length > 0;
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -42,7 +58,7 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className="sm:flex hidden">
-        {session?.user ? (
+        {isAuthed && session?.user ? (
           <div className="flex gap-3 md:gap-5">
             <Link href="/create-prompt" className="black_btn">
               Create Post
@@ -51,7 +67,7 @@ const Nav = () => {
             <button
               type="button"
               onClick={() => signOut()}
-              className="outline_btn"
+              className="outline_btn cursor-pointer"
             >
               Sign Out
             </button>
@@ -66,24 +82,33 @@ const Nav = () => {
               />
             </Link>
           </div>
-        ) : (
-          providers &&
-          Object.values(providers).map((provider) => (
+        ) : showAuthSkeleton ? (
+          <NavAuthSkeleton />
+        ) : showProviderSignIn ? (
+          providerList.map((provider) => (
             <button
               type="button"
               key={provider.name}
               onClick={() => signIn(provider.id)}
-              className="black_btn"
+              className="black_btn cursor-pointer"
             >
               Sign In
             </button>
           ))
+        ) : (
+          <button
+            type="button"
+            onClick={() => signIn("google")}
+            className="black_btn"
+          >
+            Sign In
+          </button>
         )}
       </div>
 
       {/* Mobile Navigation */}
       <div className="sm:hidden flex relative">
-        {session?.user ? (
+        {isAuthed && session?.user ? (
           <div className="flex">
             <Image
               src={session.user.image || "/assets/images/logo.svg"}
@@ -125,9 +150,10 @@ const Nav = () => {
               </div>
             )}
           </div>
-        ) : (
-          providers &&
-          Object.values(providers).map((provider) => (
+        ) : showAuthSkeleton ? (
+          <NavAuthSkeleton />
+        ) : showProviderSignIn ? (
+          providerList.map((provider) => (
             <button
               type="button"
               key={provider.name}
@@ -137,6 +163,14 @@ const Nav = () => {
               Sign In
             </button>
           ))
+        ) : (
+          <button
+            type="button"
+            onClick={() => signIn("google")}
+            className="black_btn"
+          >
+            Sign In
+          </button>
         )}
       </div>
     </nav>
