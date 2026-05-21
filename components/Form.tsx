@@ -14,7 +14,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
       <form
         onSubmit={handleSubmit}
-        className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
+        className="mt-10 w-full max-w-2xl flex flex-col gap-7"
       >
         {/* Write your prompt */}
         <label>
@@ -50,12 +50,14 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         </label>
 
         <div className="flex-end mx-3 mb-5 gap-4">
-          <Link href="/" className="text-gray-500 text-sm"></Link>
+          <Link href="/" className="text-gray-500 text-sm">
+            Cancel
+          </Link>
 
           <button
             type="submit"
             disabled={submitting}
-            className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white"
+            className="px-5 py-1.5 text-sm bg-orange-500 rounded-full text-white cursor-pointer"
           >
             {submitting ? `${type}...` : type}
           </button>

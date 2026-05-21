@@ -1,0 +1,34 @@
+<svg width="200" height="200" viewBox="50 74 122 94" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>PromptForge icon</title>
+  <desc>Anvil with a prompt cursor being forged, with sparks</desc>
+
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .icon-body { fill: #2a2a2a; stroke: #555; }
+      .icon-top  { fill: #3a3a3a; stroke: #666; }
+      .icon-base { fill: #1e1e1e; stroke: #555; }
+      .cursor    { fill: #ff6b35; }
+      .sparks    { stroke: #ff6b35; }
+      .horn      { fill: #333; stroke: #555; }
+    }
+    @media (prefers-color-scheme: light) {
+      .icon-body { fill: #e8e8e8; stroke: #aaa; }
+      .icon-top  { fill: #d0d0d0; stroke: #bbb; }
+      .icon-base { fill: #c4c4c4; stroke: #aaa; }
+      .cursor    { fill: #e8510a; }
+      .sparks    { stroke: #e8510a; }
+      .horn      { fill: #d8d8d8; stroke: #bbb; }
+    }
+  </style>
+
+  <rect class="icon-base" x="62" y="148" width="76" height="16" rx="3" stroke-width="1"/>
+  <rect class="icon-body" x="74" y="130" width="52" height="20" rx="2" stroke-width="1"/>
+  <rect class="icon-top"  x="54" y="108" width="92" height="26" rx="4" stroke-width="1"/>
+  <polygon class="horn"   points="146,113 168,121 146,129" stroke-width="1"/>
+  <rect class="cursor" x="82" y="98" width="4" height="18" rx="1"/>
+  <rect class="cursor" x="82" y="98" width="22" height="4" rx="1"/>
+  <line class="sparks" x1="100" y1="92" x2="96"  y2="80" stroke-width="1.5" stroke-linecap="round"/>
+  <line class="sparks" x1="108" y1="90" x2="112" y2="78" stroke-width="1.5" stroke-linecap="round"/>
+  <line class="sparks" x1="116" y1="93" x2="123" y2="83" stroke-width="1.5" stroke-linecap="round"/>
+  <line class="sparks" x1="90"  y1="94" x2="84"  y2="85" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

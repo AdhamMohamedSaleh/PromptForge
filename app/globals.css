@@ -98,11 +98,11 @@
 }
 
 .form_textarea {
-  @apply mt-2 h-50 w-full rounded-lg p-3 text-sm text-gray-500 outline-none;
+  @apply mt-2 h-50 w-full rounded-lg border border-gray-200 bg-white p-3 text-sm text-gray-500 outline-none;
 }
 
 .form_input {
-  @apply mt-2 w-full rounded-lg p-3 text-sm text-gray-500 outline-none;
+  @apply mt-2 w-full rounded-lg border border-gray-200 bg-white p-3 text-sm text-gray-500 outline-none;
 }
 
 /* UI Components */
@@ -111,7 +111,7 @@
 }
 
 .glassmorphism {
-  @apply rounded-xl border border-gray-200 bg-white/20 p-5 shadow-inner backdrop-blur;
+  @apply backdrop-blur;
 }
 
 .prompt_card {

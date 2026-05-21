@@ -46,14 +46,13 @@ const Nav = () => {
   return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
-        <Image
-          src="/assets/images/logo.svg"
+        <img
+          src="/assets/images/promptforge-logo.svg"
           alt="PromptForge Logo"
-          width={30}
-          height={30}
+          width={55}
+          height={55}
           className="logo_text"
         />
-        PromptForge
       </Link>
 
       {/* Desktop Navigation */}
@@ -74,7 +73,7 @@ const Nav = () => {
 
             <Link href="/profile">
               <Image
-                src={session.user.image || "/assets/images/logo.svg"}
+                src={session.user.image || "/assets/images/promptforge-logo"}
                 alt="Profile"
                 width={37}
                 height={37}
@@ -111,7 +110,7 @@ const Nav = () => {
         {isAuthed && session?.user ? (
           <div className="flex">
             <Image
-              src={session.user.image || "/assets/images/logo.svg"}
+              src={session.user.image || "/assets/images/promptforge-logo"}
               alt="Profile"
               width={37}
               height={37}
